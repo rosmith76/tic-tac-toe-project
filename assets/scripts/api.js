@@ -1,5 +1,5 @@
 'use strict';
-const app = require('../app');
+const app = require('./app');
 //file path is in relation to file we are linking.
 const signUp = (data) => {
   return $.ajax({
