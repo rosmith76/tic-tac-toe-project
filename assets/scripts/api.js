@@ -1,6 +1,6 @@
 'use strict';
 const app = require('./app');
-//file path is in relation to file we are linking.
+
 const signUp = (data) => {
   return $.ajax({
     url: app.host + '/sign-up/',
@@ -28,7 +28,7 @@ const changePassword = (data) => {
   });
 };
 
-const signOut = () => {
+const signOutButton = () => {
   return $.ajax({
     url: app.host + '/sign-out/' + app.user.id,
     method: 'DELETE',
@@ -42,5 +42,5 @@ module.exports = {
   signUp,
   signIn,
   changePassword,
-  signOut,
+  signOutButton,
 };
