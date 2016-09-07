@@ -1,0 +1,26 @@
+
+
+$background-color: #600;
+$font-color: #ffc20e;
+$unit: 40px;
+$width: (4 * $unit);
+$height: (4 * $unit);
+$black: #000;
+
+header {
+  text-align: center;
+}
+
+body {
+  background-color: $background-color;
+  color: $font-color;
+}
+
+
+.container .col-xs-4 {
+  border: 1px solid $black;
+  box-sizing: border-box;
+  height: $height;
+  text-align: center;
+  width: $width;
+ }
