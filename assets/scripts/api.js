@@ -28,7 +28,7 @@ const changePassword = (data) => {
   });
 };
 
-const signOutButton = () => {
+const signOut = () => {
   return $.ajax({
     url: app.host + '/sign-out/' + app.user.id,
     method: 'DELETE',
@@ -42,5 +42,5 @@ module.exports = {
   signUp,
   signIn,
   changePassword,
-  signOutButton,
+  signOut,
 };

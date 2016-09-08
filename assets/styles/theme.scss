@@ -21,12 +21,19 @@ body {
   background-color: $background-color;
   color: $font-color;
 }
+// 
+// .gameboard {
+//   border: 1px solid $black;
+//   box-sizing: border-box;
+//   height: $height;
+//   text-align: center;
+//   width: $width;
+//  }
 
-
-.container .col-xs-4 {
-  border: 1px solid $black;
-  box-sizing: border-box;
-  height: $height;
-  text-align: center;
-  width: $width;
- }
+// .container .col-xs-4 {
+//   border: 1px solid $black;
+//   box-sizing: border-box;
+//   height: $height;
+//   text-align: center;
+//   width: $width;
+//  }
