@@ -22,6 +22,10 @@ body {
   color: $font-color;
 }
 
+.row {
+  text-align: center;
+}
+
 .container .col-xs-4 {
   border: 1px solid $black;
   box-sizing: border-box;

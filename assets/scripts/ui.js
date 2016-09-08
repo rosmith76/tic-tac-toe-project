@@ -3,9 +3,6 @@ const app = require ('./app');
 
 const signInSuccess = (data) => {
   app.user = data.user;
-  $('#sign-in').on('submit', function(){
-    $('sign-in').hide();
-  });
 };
 
 const success = (data) => {

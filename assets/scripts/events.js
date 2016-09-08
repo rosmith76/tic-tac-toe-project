@@ -35,6 +35,12 @@ const onSignOut =(event) => {
     .fail(ui.failure);
 };
 
+// const onUpdateGame = function (event) {
+//   event.preventDefault();
+//   for (let i = 0; i < 10; i++) {
+//
+//   }
+// };
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp);
   $('#sign-in').on('submit', onSignIn);
@@ -43,11 +49,21 @@ const addHandlers = () => {
   $('#sign-in-button').on('click', function(){
     $('#sign-in').show();
   });
+  $('#sign-in').on('submit', function(){
+    $('#sign-in').hide();
+  });
+  // $('.col-xs-4').on('click', onUpdateGame);
   $('#sign-up-button').on('click', function(){
     $('#sign-up').show();
   });
+  $('#sign-up').on('submit', function(){
+    $('#sign-up').hide();
+  });
   $('#change-password-button').on('click', function(){
     $('#change-password').show();
+  });
+  $('#change-password').on('submit', function(){
+    $('#change-password').hide();
   });
 };
 
