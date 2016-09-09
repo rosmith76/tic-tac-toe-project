@@ -44,6 +44,7 @@ const onUpdateGame = function (event) {
   logic.verticalWin();
   logic.diagonalWin();
   logic.catsGame();
+  logic.gameOver();
 };
 
 const addHandlers = () => {
