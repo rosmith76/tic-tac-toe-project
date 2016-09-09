@@ -36,18 +36,15 @@ const onSignOut =(event) => {
     .fail(ui.failure);
 };
 
-// const board = ["","","","","","","","","",]
-//
 const onUpdateGame = function (event) {
   event.preventDefault();
   let cell = $(this);
   logic.isValidMove(cell);
-  //  valid move?
-  // in valid move function, allow for a check, then update board state and board array
+  logic.horizontalWin();
+  logic.verticalWin();
+  logic.diagonalWin();
+  logic.catsGame();
 };
-
-
-
 
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp);
