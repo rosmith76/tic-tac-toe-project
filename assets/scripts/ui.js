@@ -20,10 +20,15 @@ const signOutSuccess = () => {
   app.user = null;
   console.log ('Signed out');
 };
+
+const onUpdateGame = () => {
+  console.log ('game updated');
+};
 module.exports = {
   failure,
   success,
   signInSuccess,
   changePassword,
-  signOutSuccess
+  signOutSuccess,
+  onUpdateGame
 };

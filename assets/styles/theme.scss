@@ -1,7 +1,7 @@
 
 
-$background-color: #600;
-$font-color: #ffc20e;
+$burgundy: #600;
+$gold: #ffc20e;
 $unit: 30px;
 $width: (4 * $unit);
 $height: (4 * $unit);
@@ -13,13 +13,13 @@ header {
 }
 
 form {
-  background-color: $font-color;
-  color: $background-color;
+  background-color: $gold;
+  color: $burgundy;
 }
 
 body {
-  background-color: $background-color;
-  color: $font-color;
+  background-color: $burgundy;
+  color: $gold;
 }
 
 .row {
@@ -27,9 +27,11 @@ body {
 }
 
 .container .col-xs-4 {
-  border: 1px solid $black;
+  border: 1px solid $gold;
   box-sizing: border-box;
+  display: block;
   height: $height;
+  margin: auto;
   text-align: center;
   width: $width;
  }

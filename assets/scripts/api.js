@@ -28,6 +28,17 @@ const changePassword = (data) => {
   });
 };
 
+const onUpdateGame = (data) => {
+  return $.ajax({
+    url: app.host + '/update/' + app.user.id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + app.user.token,
+    },
+    data: data,
+  });
+};
+
 const signOut = () => {
   return $.ajax({
     url: app.host + '/sign-out/' + app.user.id,
@@ -43,4 +54,5 @@ module.exports = {
   signIn,
   changePassword,
   signOut,
+  onUpdateGame,
 };
