@@ -44,7 +44,8 @@ const onUpdateGame = function (event) {
   logic.verticalWin();
   logic.diagonalWin();
   logic.catsGame();
-  logic.gameOver();
+  logic.boardFull();
+  logic.lockBoard();
 };
 
 const addHandlers = () => {

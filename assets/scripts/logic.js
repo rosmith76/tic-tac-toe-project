@@ -2,119 +2,120 @@
 
 const board = ['','','','','','','','',''];
 
-let turn = 0;
-let currentPlayer = ' ';
-let winner = ' ';
-let tieGame = ' ';
+// let turn = 0;
+let player = 'X';
+// let winner = ' ';
+// let tieGame = ' ';
 
-// const gameOver = function NoneEmpty(board) {
-//   return board.indexOf("") === -1;
+// const boardFull = function(){
+//   for(let i=0; i<board.length; i++) {
+//       if(board[i] === "") { return false;
+//     }
+//   }
+//   return true;
 // };
-const gameOver = function(){
-  for(let i=0; i<board.length; i++) {
-      if(board[i] === "") { return false;
+//
+// const horizontalWin = function () {
+//     if (board[0] !== "" && board[0] === board[1] && board[0] === board[2]) {
+//       console.log("horizontal win");
+//       return true;
+//     } else if (board[3] !== "" && board[3] === board[4] && board[3] === board[5]) {
+//       console.log("horizontal win");
+//       return true;
+//     } else if (board[6] !== "" &&   board[6] === board[7] &&   board[6] === board[8]) {
+//       console.log("horizontal win");
+//       return true;
+//     }
+//     return true;
+//   };
+//
+//   const verticalWin = function () {
+//       if (board[0] !== "" && board[0] === board[3] && board[0] === board[6]) {
+//         console.log("vertical win");
+//         return true;
+//       } else if (board[1] !== "" && board[1] === board[4] && board[1] === board[7]) {
+//         console.log("vertical win");
+//         return true;
+//       } else if (board[2] !== "" &&   board[2] === board[5] &&   board[2] === board[8]) {
+//         console.log("vertical win");
+//         return true;
+//       }
+//       return true;
+//     };
+//
+//     const diagonalWin = function () {
+//         if (board[0] !== "" && board[0] === board[4] && board[0] === board[8]) {
+//           console.log("diagonal win");
+//           return true;
+//         } else if (board[2] !== "" && board[2] === board[4] && board[2] === board[6]) {
+//           console.log("diagonal win");
+//           return true;
+//         }
+//         return true;
+//       };
+//
+//     const catsGame = function() {
+//         if (boardFull() === true){
+//           if (verticalWin !== true) {
+//           console.log("cats game");
+//           return true;
+//         }else if (diagonalWin !== true) {
+//           console.log("cats game");
+//           return true;
+//         }else if (horizontalWin !== true) {
+//           console.log("cats game");
+//           return true;
+//         }
+//       }
+//     };
+
+    const updateBoard = function(cell) {
+      let index = $(cell).data('index');
+      board[index] = player;
+      console.log(board);
+    };
+
+const changePlayer = function () {
+    if (player === 'X') {
+      player = 'O';
+    }else{
+      player = 'X';
     }
-  }
-  return true;
 };
 
-const updateBoard = function(cell) {
-  let index = $(cell).data("id");
-  if (turn %2 === 0) {
-    $(cell).html('X');
-    board[index] = 'x';
-  }else {
-    $(cell).html('O');
-    board[index] = 'o';
-  }
-  turn++;
-  console.log(turn);
-  console.log(board);
-  // horizontalWin();
-};
-
-const isValidMove = function(cell) {
-  if ( $(cell).html() === "" ) {
-    updateBoard(cell);
-  } else {
-    alert('Please make a valid move.');
-  }
-};
-
-const horizontalWin = function () {
-    if (board[0] !== "" && board[0] === board[1] && board[0] === board[2]) {
-      winner = currentPlayer;
-      console.log("horizontal win");
-    } else if (board[3] !== "" && board[3] === board[4] && board[3] === board[5]) {
-      winner = currentPlayer;
-      console.log("horizontal win");
-    } else if (board[6] !== "" &&   board[6] === board[7] &&   board[6] === board[8]) {
-      winner = currentPlayer;
-      console.log("horizontal win");
-    }
-    return winner;
+const placeMarker = function (cell) {
+    $(cell).html(player);
   };
 
-  const verticalWin = function () {
-      if (board[0] !== "" && board[0] === board[3] && board[0] === board[6]) {
-        winner = currentPlayer;
-        console.log("vertical win");
-      } else if (board[1] !== "" && board[1] === board[4] && board[1] === board[7]) {
-        winner = currentPlayer;
-        console.log("vertical win");
-      } else if (board[2] !== "" &&   board[2] === board[5] &&   board[2] === board[8]) {
-        winner = currentPlayer;
-        console.log("vertical win");
+    const isValidMove = function(cell) {
+      if ( $(cell).html() === "" ) {
+        return true;
+      } else {
+        return false;
       }
-      return winner;
+        alert('Please make a valid move.');
     };
 
-    const diagonalWin = function () {
-        if (board[0] !== "" && board[0] === board[4] && board[0] === board[8]) {
-          winner = currentPlayer;
-          console.log("diagonal win");
-        } else if (board[2] !== "" && board[2] === board[4] && board[2] === board[6]) {
-          winner = currentPlayer;
-          console.log("diagonal win");
-        }
-        return winner;
-      };
-
-      // const catsGame = function(){
-      //   if (gameOver === true && horizontalWin !== winner && verticalWin !== winner && diagonalWin !== winner) {
-      //     winner = tieGame;
-      //   }
-      //   console.log("tie game");
-      //   return winner;
-      // };
-
-    const catsGame = function() {
-        if (gameOver() === true){
-          if (verticalWin !== winner) {
-          winner = tieGame;
-          console.log("cats game");
-        }else if (diagonalWin !== winner) {
-          winner = tieGame;
-          console.log("cats game");
-        }else if (horizontalWin !== winner) {
-          winner = tieGame;
-          console.log("cats game");
-        }
+    const onCellClick = function (event){
+      if (isValidMove(event.target)){
+        placeMarker(event.target);
+        updateBoard(event.target);
+        console.log('board is', board);
       }
     };
-// ...
-// ...
-// verticalWin();
-// };
-// const horizontalWin = {
 
-// };
+    const addHandlers = () => {
+      $('cell').on('click', onCellClick);
+    };
 
 module.exports = {
+  addHandlers
   isValidMove,
   horizontalWin,
   verticalWin,
   diagonalWin,
   catsGame,
-  gameOver
+  boardFull,
+  onCellClick,
+  changePlayer
 };
