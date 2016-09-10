@@ -1,0 +1,22 @@
+$font-size: 18px;
+$line-height: 1.6;
+$max-width: 650px;
+$vertical-margin: 40px;
+$horizontal-padding: 10px;
+$heading-line-height: 1.2;
+$text-color: #000;
+
+body {
+  color: $text-color;
+  font-size: $font-size;
+  line-height: $line-height;
+  margin: $vertical-margin auto;
+  max-width: $max-width;
+  padding: 0 $horizontal-padding;
+}
+
+h1,
+h2,
+h3 {
+  line-height: $heading-line-height;
+}

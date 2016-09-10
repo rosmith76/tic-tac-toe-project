@@ -1,0 +1,45 @@
+
+
+$burgundy: #600;
+$gold: #ffc20e;
+$unit: 30px;
+$width: (4 * $unit);
+$height: (4 * $unit);
+$black: #000;
+
+header {
+  box-sizing: border-box;
+  text-align: center;
+}
+
+form {
+  background-color: $gold;
+  color: $burgundy;
+}
+
+body {
+  background-color: $burgundy;
+  color: $gold;
+}
+
+.row {
+  text-align: center;
+}
+
+.container .col-xs-4 {
+  border: 1px solid $gold;
+  box-sizing: border-box;
+  display: block;
+  height: $height;
+  margin: auto;
+  text-align: center;
+  width: $width;
+ }
+
+// .container .col-xs-4 {
+//   border: 1px solid $black;
+//   box-sizing: border-box;
+//   height: $height;
+//   text-align: center;
+//   width: $width;
+//  }

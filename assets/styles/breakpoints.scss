@@ -1,0 +1,7 @@
+@import 'breakpoint';
+
+body {
+  @include breakpoint (tiny) {
+    max-width: 100%;
+  }
+}

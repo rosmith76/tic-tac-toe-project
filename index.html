@@ -1,20 +1,75 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>Tic Tac Toe</title>
 
       <script src="vendor.bundle.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="bundle.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body class="container-fluid">
-      <h1>Example</h1>
+      <header>
+      <h1>Tic Tac Toe</h1>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.</p>
+    </header>
+    <nav class="navbar">
+      <button type="button" id="sign-up-button" class="btn btn-default">Sign Up</button>
+      <button type="button" id="sign-in-button" class="btn btn-default">Sign In</button>
+      <button type="button" id="change-password-button" class="btn btn-default">Change Password</button>
+      <button type="button" id="sign-out-button" class="btn btn-default">Sign Out</button>
+    </nav>
+
+    <form id="sign-up">
+  <fieldset>
+    <legend>Sign Up</legend>
+    <input type= "email" name= "credentials[email]" placeholder="enter your email">
+    <input type= "password" name= "credentials[password]" placeholder="enter your password">
+    <input type= "password" name= "credentials[password_confirmation]" placeholder="confirm your password">
+    <input type="submit" name="submit" value="Sign up!">
+  </fieldset>
+</form>
+
+<form id="sign-in">
+  <fieldset>
+    <legend>Sign In</legend>
+    <input type= "email" name= "credentials[email]" placeholder="enter your email">
+    <input type= "password" name= "credentials[password]" placeholder="enter your password">
+    <input type="submit" name="submit" value="Sign in!">
+  </fieldset>
+</form>
+
+<form id="change-password">
+  <fieldset>
+    <legend>Change Password</legend>
+    <input type= "password" name= "passwords[old]" placeholder="enter your old password">
+    <input type= "password" name= "passwords[new]" placeholder="enter your new password">
+    <input type="submit" name="submit" value="Change Password">
+  </fieldset>
+</form>
+  <div class="board">
+    <div class="container">
+      <section class="row">
+        <article class="col-xs-4" data-index=0></article>
+        <article class="col-xs-4" data-index=1></article>
+        <article class="col-xs-4" data-index=2></article>
+      </section>
+      <section class="row">
+        <article class="col-xs-4" data-index=3></article>
+        <article class="col-xs-4" data-index=4></article>
+        <article class="col-xs-4" data-index=5></article>
+      </section>
+      <section class="row">
+        <article class="col-xs-4" data-index=6></article>
+        <article class="col-xs-4" data-index=7></article>
+        <article class="col-xs-4" data-index=8></article>
+      </section>
+    </div>
+  </div>
+
+      <div class="row">
+        <div>
+          <h1>Player's Record</h1>
+        </div>
+      </div>
+
     </body>
 </html>
