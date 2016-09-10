@@ -21,14 +21,11 @@ const signOutSuccess = () => {
   console.log ('Signed out');
 };
 
-const onUpdateGame = () => {
-  console.log ('game updated');
-};
 module.exports = {
   failure,
   success,
   signInSuccess,
   changePassword,
   signOutSuccess,
-  onUpdateGame
+  // onUpdateGame
 };
