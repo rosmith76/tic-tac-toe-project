@@ -13,10 +13,10 @@ const newGame = () => {
   });
 };
 
-const showGame = () => {
+const getGame = () => {
   let token = app.user.token;
   return $.ajax({
-    url: app.host + '/games/' + gameId,
+    url: app.host + '/games/:id',
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + token,
@@ -37,5 +37,5 @@ const showGame = () => {
 
 module.exports = {
   newGame,
-  showGame
+  getGame
 };

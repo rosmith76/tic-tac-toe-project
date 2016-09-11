@@ -5,15 +5,6 @@ const api = require('./api');
 const ui = require('./ui');
 // const logic = require('../game/logic');
 
-// const boardFull = function(){
-//   for(let i=0; i<board.length; i++) {
-//       if(board[i] === "") { return false;
-//     }
-//   }
-//   return true;
-// };
-//
-
 const onSignUp = function (event) {
   let data = getFormFields (event.target);
   event.preventDefault();
