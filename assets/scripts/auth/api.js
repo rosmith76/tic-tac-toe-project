@@ -28,16 +28,16 @@ const changePassword = (data) => {
   });
 };
 
-const onUpdateGame = (data) => {
-  return $.ajax({
-    url: app.host + '/update/' + app.user.id,
-    method: 'PATCH',
-    headers: {
-      Authorization: 'Token token=' + app.user.token,
-    },
-    data: data,
-  });
-};
+// const getGame = () => {
+//   let token = app.user.token;
+//   return $.ajax({
+//     url: app.host + '/games/:id',
+//     method: 'GET',
+//     headers: {
+//       Authorization: 'Token token=' + token,
+//     }
+//   });
+// };
 
 const signOut = () => {
   return $.ajax({
@@ -54,5 +54,5 @@ module.exports = {
   signIn,
   changePassword,
   signOut,
-  onUpdateGame,
+  // getGame
 };

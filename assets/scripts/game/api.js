@@ -1,12 +1,12 @@
 'use strict';
-
+//
 const app = require('../auth/app');
 
 const newGame = () => {
   let token = app.user.token;
   return $.ajax({
     url: app.host + '/games',
-    method: 'GET',
+    method: 'POST',
     headers: {
       Authorization: 'Token token=' + token,
     }
@@ -23,19 +23,32 @@ const getGame = () => {
     }
   });
 };
-// const showGame = (data) => {
-//   let token = app.user.token;
-//   let gameId = data.game.id;
+
+// const updateBoard = (data) => {
 //   return $.ajax({
-//     url: app.host + '/games/', + gameId,
-//     method: 'GET',
+//     url: app.host + '/update/'+ app.games.id,
+//     method: 'PATCH',
 //     headers: {
-//       Authorization: 'Token token=' + token,
+//       Authorization: 'Token token=' + app.user.token,
 //     },
+//     data: data,
 //   });
 // };
 
+const updateWins = (data) => {
+  return $.ajax({
+    url: app.host + '/update/'+ app.games.id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + app.user.token,
+    },
+    data: data,
+  });
+};
+// + app.games.id,
 module.exports = {
+  // updateBoard,
   newGame,
+  updateWins,
   getGame
 };
