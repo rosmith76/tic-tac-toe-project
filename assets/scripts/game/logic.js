@@ -3,63 +3,73 @@
 const board = ['','','','','','','','',''];
 
 let player = 'X';
+let win = false;
+
+const boardFull = function(){
+  for(let i=0; i<board.length; i++) {
+      if(board[i] === "") { return false;
+    }
+  }
+  return true;
+};
 
 const horizontalWin = function () {
     if (board[0] !== "" && board[0] === board[1] && board[0] === board[2]) {
       console.log("horizontal win");
-      return true;
+      win = true;
     } else if (board[3] !== "" && board[3] === board[4] && board[3] === board[5]) {
       console.log("horizontal win");
-      return true;
+      win = true;
     } else if (board[6] !== "" &&   board[6] === board[7] &&   board[6] === board[8]) {
       console.log("horizontal win");
-      return true;
+      win = true;
     }
-    return true;
-  };
+};
 
   const verticalWin = function () {
       if (board[0] !== "" && board[0] === board[3] && board[0] === board[6]) {
         console.log("vertical win");
-        return true;
+        win = true;
       } else if (board[1] !== "" && board[1] === board[4] && board[1] === board[7]) {
         console.log("vertical win");
-        return true;
+        win = true;
       } else if (board[2] !== "" &&   board[2] === board[5] &&   board[2] === board[8]) {
         console.log("vertical win");
-        return true;
+        win = true;
       }
-      return true;
+
     };
 
     const diagonalWin = function () {
         if (board[0] !== "" && board[0] === board[4] && board[0] === board[8]) {
           console.log("diagonal win");
-          return true;
+          win = true;
         } else if (board[2] !== "" && board[2] === board[4] && board[2] === board[6]) {
           console.log("diagonal win");
-          return true;
+          win = true;
         }
-        return true;
+
       };
 
     const catsGame = function() {
-          if (verticalWin !== true) {
+        if (boardFull() === true){
+          console.log("board full");
+        if (verticalWin !== true) {
           console.log("cats game");
-          return true;
+          win = true;
         }else if (diagonalWin !== true) {
           console.log("cats game");
-          return true;
+          win = true;
         }else if (horizontalWin !== true) {
           console.log("cats game");
-          return true;
+          win = true;
         }
+      }
       };
 
     const updateBoard = function(cell) {
       let index = $(cell).data('index');
       board[index] = player;
-      console.log(board);
     };
 
 const changePlayer = function () {
@@ -74,7 +84,7 @@ const placeMarker = function (cell) {
     $(cell).html(player);
   };
 
-    const isValidMove = function(cell) {
+const isValidMove = function(cell) {
       if ( $(cell).html() === "" ) {
         return true;
       } else {
@@ -83,16 +93,31 @@ const placeMarker = function (cell) {
         alert('Please make a valid move.');
     };
 
-    const onCellClick = function (event){
+const gameOver = function() {
+  if ( win === true) {
+  console.log('game over2');
+}
+};
+//write get game function
+//write update game function
+//write new game function
+
+
+//write function to lock game when over
+//write function to render results and maybe current player
+ 
+  const onCellClick = function (event){
       if (isValidMove(event.target)){
         placeMarker(event.target);
         updateBoard(event.target);
-        console.log('board is', board);
         changePlayer();
         catsGame();
         diagonalWin();
         verticalWin();
         horizontalWin();
+        boardFull();
+        gameOver();
+        console.log(board);
       }
     };
 
@@ -110,5 +135,7 @@ module.exports = {
   catsGame,
   horizontalWin,
   verticalWin,
-  diagonalWin
+  diagonalWin,
+  boardFull,
+  gameOver
 };

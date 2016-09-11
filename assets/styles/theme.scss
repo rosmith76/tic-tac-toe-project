@@ -26,6 +26,11 @@ body {
   text-align: center;
 }
 
+.board {
+  box-sizing: border-box;
+  margin: auto;
+}
+
 .container .col-xs-4 {
   border: 1px solid $gold;
   box-sizing: border-box;
