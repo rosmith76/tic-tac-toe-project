@@ -21,11 +21,20 @@ const signOutSuccess = () => {
   console.log ('Signed out');
 };
 
+// const newGameSuccess = (data) => {
+//   app.game = data.game;
+//   console.log(app.game);
+// };
+//
+// const getGameSuccess = (data) => {
+//   app.game = data.game;
+//   console.log(app.game);
+// };
+
 module.exports = {
   failure,
   success,
   signInSuccess,
   changePassword,
-  signOutSuccess,
-  // onUpdateGame
+  signOutSuccess
 };

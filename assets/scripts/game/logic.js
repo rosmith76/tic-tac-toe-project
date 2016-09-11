@@ -2,8 +2,12 @@
 
 const board = ['','','','','','','','',''];
 
+const api = require('./api');
+const ui = require('./ui');
+
 let player = 'X';
 let win = false;
+let tie = false;
 
 const boardFull = function(){
   for(let i=0; i<board.length; i++) {
@@ -37,8 +41,7 @@ const horizontalWin = function () {
         console.log("vertical win");
         win = true;
       }
-
-    };
+};
 
     const diagonalWin = function () {
         if (board[0] !== "" && board[0] === board[4] && board[0] === board[8]) {
@@ -54,22 +57,45 @@ const horizontalWin = function () {
     const catsGame = function() {
         if (boardFull() === true){
           console.log("board full");
-        if (verticalWin !== true) {
+        if (verticalWin !== win) {
           console.log("cats game");
-          win = true;
-        }else if (diagonalWin !== true) {
+          tie = true;
+        }else if (diagonalWin !== win) {
           console.log("cats game");
-          win = true;
-        }else if (horizontalWin !== true) {
+          tie = true;
+        }else if (horizontalWin !== win) {
           console.log("cats game");
-          win = true;
+          tie = true;
         }
       }
+      };
+
+      // const wins = function(){
+      //   diagonalWin();
+      //   horizontalWin();
+      //   verticalWin();
+      //   catsGame();
+      // };
+      //i can't get tie to work. i have tried win and true in the above. cats game still
+      //displays if a win has already been declared. if I can get the board to lock after a win
+      // this will not matter.
+      const onNewGame = function (event) {
+        event.preventDefault();
+        // let data = getFormFields(event.target);
+        console.log("new game");
+        let data = {};
+        api.newGame(data)
+          .done(ui.newGameSuccess)
+          .fail(ui.failure);
       };
 
     const updateBoard = function(cell) {
       let index = $(cell).data('index');
       board[index] = player;
+        //  let data = {};
+        // api.updateBoard(data)
+        //   .done(ui.updateBoardSuccess)
+        //   .fail(ui.failure);
     };
 
 const changePlayer = function () {
@@ -90,7 +116,6 @@ const isValidMove = function(cell) {
       } else {
         return false;
       }
-        alert('Please make a valid move.');
     };
 
 const gameOver = function() {
@@ -98,36 +123,43 @@ const gameOver = function() {
   console.log('game over2');
 }
 };
-//write get game function
-//write update game function
-//write new game function
 
+const onGetGame = function (event) {
+  event.preventDefault();
+  // let data = getFormFields(event.target);
+  let data = {};
+   console.log("get game");
+  api.getGame(data)
+    .done(ui.getGame)
+    .fail(ui.failure);
+};
 
 //write function to lock game when over
 //write function to render results and maybe current player
- 
+
   const onCellClick = function (event){
       if (isValidMove(event.target)){
         placeMarker(event.target);
         updateBoard(event.target);
         changePlayer();
-        catsGame();
         diagonalWin();
         verticalWin();
         horizontalWin();
         boardFull();
         gameOver();
+        catsGame();
         console.log(board);
       }
     };
 
     const addHandlers = () => {
       $('.col-xs-4').on('click', onCellClick);
+      $('#new-game-button').on('click', onNewGame);
+      $('#get-games-button').on('click', onGetGame);
     };
 
 module.exports = {
   addHandlers,
-  onCellClick,
   changePlayer,
   isValidMove,
   updateBoard,

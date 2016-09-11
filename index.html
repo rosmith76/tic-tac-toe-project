@@ -16,8 +16,7 @@
       <button type="button" id="sign-in-button" class="btn btn-default">Sign In</button>
       <button type="button" id="change-password-button" class="btn btn-default">Change Password</button>
       <button type="button" id="sign-out-button" class="btn btn-default">Sign Out</button>
-      <button type="button" id="new--game-button" class="btn btn-default">Start New Game</button>
-      <button type="button" id="get-games-button" class="btn btn-default">Get Game Stats</button>
+      <button type="button" id="new-game-button" class="btn btn-default">Start New Game</button>
     </nav>
 
     <form id="sign-up">
@@ -47,6 +46,10 @@
     <input type="submit" name="submit" value="Change Password">
   </fieldset>
 </form>
+<div class=game-message-board id="player">
+</div>
+<div class=game-message-board id="winning-message">
+</div>
   <div class="board">
     <div class="container">
       <section class="row">
@@ -69,7 +72,7 @@
 
       <div class="row">
         <div>
-          <h1>Player's Record</h1>
+          <button type="button" id="get-games-button" class="btn btn-default">Get Game Stats</button>
         </div>
       </div>
 
