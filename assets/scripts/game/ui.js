@@ -20,12 +20,12 @@ function onCellClick(event){
 
       let over;
       if (status.winner) {
-        doStuffWhenGameEnds();
+        gameEnds();
         $('#winning-message').text('Player ' + status.winner + ' wins!');
         over = true;
       }
       else if (status.tie) {
-        doStuffWhenGameEnds();
+        gameEnds();
         $('#winning-message').text('The game is a tie!');
         over = true;
       }
@@ -50,23 +50,23 @@ function onCellClick(event){
     }
   }
 
-const doStuffWhenGameStarts = function() {
+const gameStarts = function() {
   $('.col-xs-4').on('click', onCellClick);
   $('#winning-message').text('');
   $("#player").text("Current player: " + logic.getCurrentPlayer());
 };
 
-// this linter warning is invalid because all 3 functions will be defined before any code in any of them executes.
-const doStuffWhenGameEnds = function() {
+// this linter warning is doesnt make sense because all 3 functions will be defined before any code in any of them runs.
+const gameEnds = function() {
   $('.col-xs-4').off('click', onCellClick);
   $('#player').hide();
 };
 
 const newGameSuccess = (data) => {
-  console.log('new GAME SUCCESS', data);
+  console.log(data);
   app.game = data.game;
   console.log(app.game);
-  doStuffWhenGameStarts();
+  gameStarts();
 };
 
 const getGameSuccess = (data) => {
@@ -74,22 +74,36 @@ const getGameSuccess = (data) => {
   console.log(app.game);
 };
 
+// void logic.board::clear() {
+//     for(int i = 0; i <= 9; i++) {
+//             logic.board[i].clear();
+//     }
+//   };
+
 const onNewGame = function (event) {
   event.preventDefault();
-
   if (!app.user) {
     $('#winning-message').text('You have to be logged in to start a game');
     return;
   }
-
-  console.log("new game");
   api.newGame()
     .done(newGameSuccess)
     .fail(failure);
 };
 
+const onGetGame = function (event) {
+  event.preventDefault();
+  if (!app.user) {
+    $('#game-message').text('You have to be logged in to get game stats');
+    return;
+  }
+  api.getGame()
+    .done(newGameSuccess)
+    .fail(failure);
+};
     const addHandlers = () => {
       $('#new-game-button').on('click', onNewGame);
+      $('#get-games-button').on('click', onGetGame);
     };
 
 
@@ -98,6 +112,5 @@ module.exports = {
   success,
   newGameSuccess,
   getGameSuccess,
-  doStuffWhenGameEnds,
   addHandlers
 };
