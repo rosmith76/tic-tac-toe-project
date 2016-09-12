@@ -53,7 +53,6 @@ const horizontalWin = function () {
 
     const catsGame = function() {
         if (boardFull() && !(verticalWin() || horizontalWin() || diagonalWin())){
-          console.log("board full");
           return true;
         }
         else {
