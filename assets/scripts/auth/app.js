@@ -1,7 +1,7 @@
 'use strict';
 
 const app = {
-  host: 'http://tic-tac-toe.wdibos.co'
+  host: 'https://aqueous-atoll-85096.herokuapp.com/'
 };
 
 
