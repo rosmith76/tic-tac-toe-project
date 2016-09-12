@@ -24,16 +24,6 @@ const getGame = () => {
   });
 };
 
-// const updateBoard = (data) => {
-//   return $.ajax({
-//     url: app.host + '/update/'+ app.games.id,
-//     method: 'PATCH',
-//     headers: {
-//       Authorization: 'Token token=' + app.user.token,
-//     },
-//     data: data,
-//   });
-// };
 
 const updateWins = (data) => {
   return $.ajax({
@@ -45,9 +35,8 @@ const updateWins = (data) => {
     data: data,
   });
 };
-// + app.games.id,
+
 module.exports = {
-  // updateBoard,
   newGame,
   updateWins,
   getGame

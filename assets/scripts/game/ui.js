@@ -11,11 +11,6 @@ const success = (data) => {
 const failure = (error) => {
   console.error(error);
 };
-//
-// const updateBoardSuccess = (data) => {
-//   app.game = data.game;
-//   console.log(app.game);
-// };
 
 function onCellClick(event){
     if (logic.isValidMove(event.target)){
@@ -79,25 +74,6 @@ const getGameSuccess = (data) => {
   console.log(app.game);
 };
 
-// const updateWins = (data) => {
-//   app.game = data.game;
-//   console.log(app.game);
-// };
-
-// const onGetGame = function (event) {
-//   event.preventDefault();
-//   // let data = getFormFields(event.target);
-//   let data = {};
-//    console.log("get game");
-//   api.getGame(data)
-//     .done(getGame)
-//     .fail(failure);
-// };
-
-//write function to lock game when over
-//write function to render results and maybe current player
-
-
 const onNewGame = function (event) {
   event.preventDefault();
 
@@ -106,7 +82,6 @@ const onNewGame = function (event) {
     return;
   }
 
-  // let data = getFormFields(event.target);
   console.log("new game");
   api.newGame()
     .done(newGameSuccess)
@@ -115,18 +90,14 @@ const onNewGame = function (event) {
 
     const addHandlers = () => {
       $('#new-game-button').on('click', onNewGame);
-      //$('#get-games-button').on('click', onGetGame);
     };
 
 
 module.exports = {
   failure,
   success,
-  // updateBoardSuccess,
   newGameSuccess,
   getGameSuccess,
-  // updateWins
-  // onCellClick,
   doStuffWhenGameEnds,
   addHandlers
 };

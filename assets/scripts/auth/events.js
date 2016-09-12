@@ -3,7 +3,6 @@
 const getFormFields = require('../../../lib/get-form-fields');
 const api = require('./api');
 const ui = require('./ui');
-// const logic = require('../game/logic');
 
 const onSignUp = function (event) {
   let data = getFormFields (event.target);
@@ -38,42 +37,10 @@ const onSignOut =(event) => {
     .fail(ui.failure);
 };
 
-// const onNewGame = function (event) {
-//   event.preventDefault();
-//   // let data = getFormFields(event.target);
-//   console.log("new game");
-//   let data = {};
-//   api.newGame(data)
-//     .done(ui.newGameSuccess)
-//     .fail(ui.failure);
-// };
-
-// const onGetGame = function (event) {
-//   event.preventDefault();
-//   // let data = getFormFields(event.target);
-//   let data = {};
-//    console.log("get game");
-//   api.getGame(data)
-//     .done(ui.updateGame)
-//     .fail(ui.failure);
-// };
-
-// const onUpdateGame = function (event) {
-//   event.preventDefault();
-//   // let data = getFormFields(event.target);
-//    console.log("update game");
-//    let data = {};
-//   api.updateGame(data)
-//     .done(ui.updateGameSuccess)
-//     .fail(ui.failure);
-// };
-
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp);
   $('#sign-in').on('submit', onSignIn);
   $('#change-password').on('submit', onChangePassword);
-  // $('#new-game-button').on('click', onNewGame);
-  // $('#get-games-button').on('click', onGetGame);
   $('#sign-out-button').on('click', onSignOut);
   $('#sign-in-button').on('click', function(){
     $('#sign-in').show();

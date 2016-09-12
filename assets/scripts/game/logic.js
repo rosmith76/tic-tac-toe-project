@@ -60,7 +60,7 @@ const horizontalWin = function () {
           return false;
         }
       };
-      // gameStatus {winner: "X"} {winner: "O"} {tie: true} {}
+
       const gameStatus = function() {
         let v = verticalWin();
         let h = horizontalWin();
@@ -81,10 +81,6 @@ const horizontalWin = function () {
     const updateBoard = function(cell) {
       let index = $(cell).data('index');
       board[index] = player;
-        //  let data = {};
-        // api.updateBoard(data)
-        //   .done(ui.updateBoardSuccess)
-        //   .fail(ui.failure);
     };
 
 const changePlayer = function () {
@@ -120,10 +116,5 @@ module.exports = {
   isValidMove,
   updateBoard,
   placeMarker,
-  catsGame,
-  horizontalWin,
-  verticalWin,
-  diagonalWin,
-  boardFull,
   gameStatus
 };
