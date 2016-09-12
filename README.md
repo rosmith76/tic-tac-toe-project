@@ -3,7 +3,7 @@ Tic Tac Toe Project
 Produce documentation in the form of a README, which must:
 
 Link to your hosted game in the URL section of your Github repo.
-https://rosmith76.github.io/tic-tac-toe-project/
+'https://rosmith76.github.io/tic-tac-toe-project/'
 
 Technologies used: HTML, CSS, javascript, Sass, Bootstraps, Ajax, jQuery
 
