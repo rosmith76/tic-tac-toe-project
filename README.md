@@ -3,6 +3,7 @@ Tic Tac Toe Project
 Produce documentation in the form of a README, which must:
 
 Link to your hosted game in the URL section of your Github repo.
+'https://rosmith76.github.io/tic-tac-toe-project/'
 
 Technologies used: HTML, CSS, javascript, Sass, Bootstraps, Ajax, jQuery
 
@@ -18,4 +19,4 @@ I need to figure out how to clear the board array when the new game nutton is
 pushed.
 
 Link to wireframes and user stories.
-Wire frame was done on paper. 
+Wire frame was done on paper.
