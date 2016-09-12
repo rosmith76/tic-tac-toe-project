@@ -8,16 +8,14 @@ require('./game/api');
 require('./auth/api');
 require('./auth/app');
 require('./auth/ui');
-require('./game/ui');
+const ui = require('./game/ui');
 require('./game/logic');
 
 const authEvents = require('./auth/events.js');
-
-const onCellClick = require('./game/logic.js');
 
 $(() => {
   $('container').show();
   $('form').hide();
   authEvents.addHandlers();
-  onCellClick.addHandlers();
+  ui.addHandlers();
 });
