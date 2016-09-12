@@ -37,7 +37,7 @@ const getGame = () => {
 
 const updateWins = (data) => {
   return $.ajax({
-    url: app.host + '/update/'+ app.games.id,
+    url: app.host + '/games/'+ app.games.id,
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + app.user.token,
