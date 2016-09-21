@@ -45,8 +45,6 @@ function onCellClick(event){
           "over": over
         }
       });
-
-      console.log(logic.board);
     }
   }
 
@@ -73,12 +71,6 @@ const getGameSuccess = (data) => {
   app.game = data.game;
   console.log(app.game);
 };
-
-// void logic.board::clear() {
-//     for(int i = 0; i <= 9; i++) {
-//             logic.board[i].clear();
-//     }
-//   };
 
 const onNewGame = function (event) {
   event.preventDefault();
