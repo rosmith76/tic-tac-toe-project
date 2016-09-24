@@ -54,6 +54,12 @@ const gameStarts = function() {
   $("#player").text("Current player: " + logic.getCurrentPlayer());
 };
 
+// const clearGameboard = function() {
+
+  // logic.board = ['','','','','','','','',''];
+  // $('col-xs-4').trigger('reset');
+// };
+
 // this linter warning is doesnt make sense because all 3 functions will be defined before any code in any of them runs.
 const gameEnds = function() {
   $('.col-xs-4').off('click', onCellClick);
@@ -64,12 +70,15 @@ const newGameSuccess = (data) => {
   console.log(data);
   app.game = data.game;
   console.log(app.game);
+  // clearGameboard();
   gameStarts();
 };
+// need to add clear gameboard function
 
 const getGameSuccess = (data) => {
   app.game = data.game;
-  console.log(app.game);
+  $('#game-message').text('Your game stats are' );
+  // console.log(app.game);
 };
 
 const onNewGame = function (event) {
@@ -90,7 +99,7 @@ const onGetGame = function (event) {
     return;
   }
   api.getGame()
-    .done(newGameSuccess)
+    .done(getGameSuccess)
     .fail(failure);
 };
     const addHandlers = () => {
