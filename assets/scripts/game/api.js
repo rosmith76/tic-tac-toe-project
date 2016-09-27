@@ -1,6 +1,7 @@
 'use strict';
 //
 const app = require('../auth/app');
+// const logic = require('./logic');
 
 const newGame = () => {
   let token = app.user.token;
@@ -15,7 +16,7 @@ const newGame = () => {
 
 const getGame = () => {
   return $.ajax({
-    url: app.host + '/games',
+        url: app.host + '/games',
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + app.user.token,
@@ -25,6 +26,7 @@ const getGame = () => {
 
 
 const updateWins = (data) => {
+  console.log('updateWins data is', data);
   return $.ajax({
     url: app.host + '/games/' + app.game.id,
     method: 'PATCH',
