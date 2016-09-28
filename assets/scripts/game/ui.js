@@ -30,12 +30,12 @@ function onCellClick(event){
         over = true;
       }
       else {
-        logic.changePlayer();
         over = false;
       }
 
       let index = $(event.target).data('index');
       let player = logic.getCurrentPlayer();
+      // console.log(logic.board);
       api.updateWins({
         "game": {
           "cell": {
@@ -46,7 +46,9 @@ function onCellClick(event){
         }
       });
 
-      console.log(logic.board);
+      if (!over) {
+        logic.changePlayer();
+      }
     }
   }
 
@@ -56,7 +58,6 @@ const gameStarts = function() {
   $("#player").text("Current player: " + logic.getCurrentPlayer());
 };
 
-// this linter warning is doesnt make sense because all 3 functions will be defined before any code in any of them runs.
 const gameEnds = function() {
   $('.col-xs-4').off('click', onCellClick);
   $('#player').hide();
@@ -66,19 +67,28 @@ const newGameSuccess = (data) => {
   console.log(data);
   app.game = data.game;
   console.log(app.game);
+  logic.clearGameboard();
+  $('.col-xs-4').text('');
   gameStarts();
 };
 
-const getGameSuccess = (data) => {
-  app.game = data.game;
-  console.log(app.game);
-};
 
-// void logic.board::clear() {
-//     for(int i = 0; i <= 9; i++) {
-//             logic.board[i].clear();
-//     }
-//   };
+const getGameSuccess = (data) => {
+
+  let wonX = 0;
+  let wonO = 0;
+  data.games.forEach(function(game) {
+    const status = logic.gameStatus(game.cells);
+    if (status.winner === 'X') {
+      wonX++;
+    }
+    else if (status.winner === 'O') {
+      wonO++;
+    }
+  });
+
+  $('#game-message').text('Your game stats are: ' + wonX + ' games won by X and ' + wonO + ' games won by O ');
+};
 
 const onNewGame = function (event) {
   event.preventDefault();
@@ -98,7 +108,7 @@ const onGetGame = function (event) {
     return;
   }
   api.getGame()
-    .done(newGameSuccess)
+    .done(getGameSuccess)
     .fail(failure);
 };
     const addHandlers = () => {

@@ -14,12 +14,11 @@ const newGame = () => {
 };
 
 const getGame = () => {
-  let token = app.user.token;
   return $.ajax({
-    url: app.host + '/games/:id',
+        url: app.host + '/games',
     method: 'GET',
     headers: {
-      Authorization: 'Token token=' + token,
+      Authorization: 'Token token=' + app.user.token,
     }
   });
 };

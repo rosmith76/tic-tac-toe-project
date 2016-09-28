@@ -10,7 +10,6 @@ const onSignUp = function (event) {
   api.signUp(data)
     .done(ui.success)
     .fail(ui.failure);
-    console.log ('sign up');
 };
 
 const onSignIn = function (event) {
@@ -19,7 +18,6 @@ const onSignIn = function (event) {
   api.signIn(data)
     .done(ui.signInSuccess)
     .fail(ui.failure);
-    console.log ('sign in');
 };
 
 const onChangePassword = function (event) {
