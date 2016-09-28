@@ -13,10 +13,10 @@ const boardFull = function(gameBoard){
 };
 
 const clearGameboard = function() {
-  for (var i = 0; i < board.length; i++) {
+  for (let i = 0; i < board.length; i++) {
     board[i] = '';
   }
-}
+};
 
 const horizontalWin = function (gameBoard) {
     gameBoard = gameBoard || board;
@@ -84,7 +84,7 @@ const horizontalWin = function (gameBoard) {
     const updateBoard = function(cell) {
       let index = $(cell).data('index');
       board[index] = player;
-      console.log(board);
+      // console.log(board);
     };
 
 const changePlayer = function () {

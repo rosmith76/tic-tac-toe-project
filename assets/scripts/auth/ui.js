@@ -21,11 +21,6 @@ const signOutSuccess = () => {
   console.log ('Signed out');
 };
 
-// const getGameSuccess = (data) => {
-//   app.game = data.game;
-//   console.log(app.game);
-// };
-
 module.exports = {
   failure,
   success,

@@ -35,7 +35,7 @@ function onCellClick(event){
 
       let index = $(event.target).data('index');
       let player = logic.getCurrentPlayer();
-      console.log(logic.board);
+      // console.log(logic.board);
       api.updateWins({
         "game": {
           "cell": {
@@ -58,8 +58,6 @@ const gameStarts = function() {
   $("#player").text("Current player: " + logic.getCurrentPlayer());
 };
 
-
-// this linter warning is doesnt make sense because all 3 functions will be defined before any code in any of them runs.
 const gameEnds = function() {
   $('.col-xs-4').off('click', onCellClick);
   $('#player').hide();
@@ -73,7 +71,7 @@ const newGameSuccess = (data) => {
   $('.col-xs-4').text('');
   gameStarts();
 };
-// need to add clear gameboard function
+
 
 const getGameSuccess = (data) => {
 
@@ -89,7 +87,7 @@ const getGameSuccess = (data) => {
     }
   });
 
-  $('#game-message').text('Your game stats are: ' + wonX + ' games won by X and ' + wonO + ' games won by O');
+  $('#game-message').text('Your game stats are: ' + wonX + ' games won by X and ' + wonO + ' games won by O ');
 };
 
 const onNewGame = function (event) {
