@@ -69,12 +69,11 @@ webpackJsonp([0],[
 	};
 
 	var getGame = function getGame() {
-	  var token = app.user.token;
 	  return $.ajax({
-	    url: app.host + '/games/:id',
+	    url: app.host + '/games',
 	    method: 'GET',
 	    headers: {
-	      Authorization: 'Token token=' + token
+	      Authorization: 'Token token=' + app.user.token
 	    }
 	  });
 	};
@@ -104,7 +103,7 @@ webpackJsonp([0],[
 	'use strict';
 
 	var app = {
-	  host: 'https://aqueous-atoll-85096.herokuapp.com/'
+	  host: 'https://aqueous-atoll-85096.herokuapp.com'
 	};
 
 	module.exports = app;
@@ -143,17 +142,6 @@ webpackJsonp([0],[
 	    data: data
 	  });
 	};
-
-	// const getGame = () => {
-	//   let token = app.user.token;
-	//   return $.ajax({
-	//     url: app.host + '/games/:id',
-	//     method: 'GET',
-	//     headers: {
-	//       Authorization: 'Token token=' + token,
-	//     }
-	//   });
-	// };
 
 	var signOut = function signOut() {
 	  return $.ajax({
@@ -201,11 +189,6 @@ webpackJsonp([0],[
 	  console.log('Signed out');
 	};
 
-	// const getGameSuccess = (data) => {
-	//   app.game = data.game;
-	//   console.log(app.game);
-	// };
-
 	module.exports = {
 	  failure: failure,
 	  success: success,
@@ -223,68 +206,72 @@ webpackJsonp([0],[
 	var board = ['', '', '', '', '', '', '', '', ''];
 	var player = 'X';
 
-	var boardFull = function boardFull() {
-	  for (var i = 0; i < board.length; i++) {
-	    if (board[i] === "") {
+	var boardFull = function boardFull(gameBoard) {
+	  gameBoard = gameBoard || board;
+	  for (var i = 0; i < gameBoard.length; i++) {
+	    if (gameBoard[i] === "") {
 	      return false;
 	    }
 	  }
 	  return true;
 	};
 
-	var horizontalWin = function horizontalWin() {
-	  if (board[0] !== "" && board[0] === board[1] && board[0] === board[2]) {
-	    console.log("horizontal win");
-	    return board[0];
-	  } else if (board[3] !== "" && board[3] === board[4] && board[3] === board[5]) {
-	    console.log("horizontal win");
-	    return board[3];
-	  } else if (board[6] !== "" && board[6] === board[7] && board[6] === board[8]) {
-	    console.log("horizontal win");
-	    return board[6];
+	var clearGameboard = function clearGameboard() {
+	  for (var i = 0; i < board.length; i++) {
+	    board[i] = '';
+	  }
+	};
+
+	var horizontalWin = function horizontalWin(gameBoard) {
+	  gameBoard = gameBoard || board;
+	  if (gameBoard[0] !== "" && gameBoard[0] === gameBoard[1] && gameBoard[0] === gameBoard[2]) {
+	    return gameBoard[0];
+	  } else if (gameBoard[3] !== "" && gameBoard[3] === gameBoard[4] && gameBoard[3] === gameBoard[5]) {
+	    return gameBoard[3];
+	  } else if (gameBoard[6] !== "" && gameBoard[6] === gameBoard[7] && gameBoard[6] === gameBoard[8]) {
+	    return gameBoard[6];
 	  }
 
 	  return false;
 	};
 
-	var verticalWin = function verticalWin() {
-	  if (board[0] !== "" && board[0] === board[3] && board[0] === board[6]) {
-	    console.log("vertical win");
-	    return board[0];
-	  } else if (board[1] !== "" && board[1] === board[4] && board[1] === board[7]) {
-	    console.log("vertical win");
-	    return board[1];
-	  } else if (board[2] !== "" && board[2] === board[5] && board[2] === board[8]) {
-	    console.log("vertical win");
-	    return board[2];
+	var verticalWin = function verticalWin(gameBoard) {
+	  gameBoard = gameBoard || board;
+	  if (gameBoard[0] !== "" && gameBoard[0] === gameBoard[3] && gameBoard[0] === gameBoard[6]) {
+	    return gameBoard[0];
+	  } else if (gameBoard[1] !== "" && gameBoard[1] === gameBoard[4] && gameBoard[1] === gameBoard[7]) {
+	    return gameBoard[1];
+	  } else if (gameBoard[2] !== "" && gameBoard[2] === gameBoard[5] && gameBoard[2] === gameBoard[8]) {
+	    return gameBoard[2];
 	  }
 	  return false;
 	};
 
-	var diagonalWin = function diagonalWin() {
-	  if (board[0] !== "" && board[0] === board[4] && board[0] === board[8]) {
-	    console.log("diagonal win");
-	    return board[0];
-	  } else if (board[2] !== "" && board[2] === board[4] && board[2] === board[6]) {
-	    console.log("diagonal win");
-	    return board[2];
+	var diagonalWin = function diagonalWin(gameBoard) {
+	  gameBoard = gameBoard || board;
+	  if (gameBoard[0] !== "" && gameBoard[0] === gameBoard[4] && gameBoard[0] === gameBoard[8]) {
+	    return gameBoard[0];
+	  } else if (gameBoard[2] !== "" && gameBoard[2] === gameBoard[4] && gameBoard[2] === gameBoard[6]) {
+	    return gameBoard[2];
 	  }
 	  return false;
 	};
 
-	var catsGame = function catsGame() {
-	  if (boardFull() && !(verticalWin() || horizontalWin() || diagonalWin())) {
+	var catsGame = function catsGame(gameBoard) {
+	  gameBoard = gameBoard || board;
+	  if (boardFull(gameBoard) && !(verticalWin(gameBoard) || horizontalWin(gameBoard) || diagonalWin(gameBoard))) {
 	    return true;
 	  } else {
 	    return false;
 	  }
 	};
 
-	var gameStatus = function gameStatus() {
-	  var v = verticalWin();
-	  var h = horizontalWin();
-	  var d = diagonalWin();
-	  var t = catsGame();
+	var gameStatus = function gameStatus(gameBoard) {
+	  gameBoard = gameBoard || board;
+	  var v = verticalWin(gameBoard);
+	  var h = horizontalWin(gameBoard);
+	  var d = diagonalWin(gameBoard);
+	  var t = catsGame(gameBoard);
 
 	  if (v || h || d) {
 	    return { winner: v || h || d };
@@ -298,6 +285,7 @@ webpackJsonp([0],[
 	var updateBoard = function updateBoard(cell) {
 	  var index = $(cell).data('index');
 	  board[index] = player;
+	  // console.log(board);
 	};
 
 	var changePlayer = function changePlayer() {
@@ -333,7 +321,8 @@ webpackJsonp([0],[
 	  isValidMove: isValidMove,
 	  updateBoard: updateBoard,
 	  placeMarker: placeMarker,
-	  gameStatus: gameStatus
+	  gameStatus: gameStatus,
+	  clearGameboard: clearGameboard
 	};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
@@ -371,12 +360,12 @@ webpackJsonp([0],[
 	      $('#winning-message').text('The game is a tie!');
 	      over = true;
 	    } else {
-	      logic.changePlayer();
 	      over = false;
 	    }
 
 	    var index = $(event.target).data('index');
 	    var player = logic.getCurrentPlayer();
+	    // console.log(logic.board);
 	    api.updateWins({
 	      "game": {
 	        "cell": {
@@ -387,7 +376,9 @@ webpackJsonp([0],[
 	      }
 	    });
 
-	    console.log(logic.board);
+	    if (!over) {
+	      logic.changePlayer();
+	    }
 	  }
 	}
 
@@ -397,7 +388,6 @@ webpackJsonp([0],[
 	  $("#player").text("Current player: " + logic.getCurrentPlayer());
 	};
 
-	// this linter warning is doesnt make sense because all 3 functions will be defined before any code in any of them runs.
 	var gameEnds = function gameEnds() {
 	  $('.col-xs-4').off('click', onCellClick);
 	  $('#player').hide();
@@ -407,19 +397,26 @@ webpackJsonp([0],[
 	  console.log(data);
 	  app.game = data.game;
 	  console.log(app.game);
+	  logic.clearGameboard();
+	  $('.col-xs-4').text('');
 	  gameStarts();
 	};
 
 	var getGameSuccess = function getGameSuccess(data) {
-	  app.game = data.game;
-	  console.log(app.game);
-	};
 
-	// void logic.board::clear() {
-	//     for(int i = 0; i <= 9; i++) {
-	//             logic.board[i].clear();
-	//     }
-	//   };
+	  var wonX = 0;
+	  var wonO = 0;
+	  data.games.forEach(function (game) {
+	    var status = logic.gameStatus(game.cells);
+	    if (status.winner === 'X') {
+	      wonX++;
+	    } else if (status.winner === 'O') {
+	      wonO++;
+	    }
+	  });
+
+	  $('#game-message').text('Your game stats are: ' + wonX + ' games won by X and ' + wonO + ' games won by O ');
+	};
 
 	var onNewGame = function onNewGame(event) {
 	  event.preventDefault();
@@ -436,7 +433,7 @@ webpackJsonp([0],[
 	    $('#game-message').text('You have to be logged in to get game stats');
 	    return;
 	  }
-	  api.getGame().done(newGameSuccess).fail(failure);
+	  api.getGame().done(getGameSuccess).fail(failure);
 	};
 	var addHandlers = function addHandlers() {
 	  $('#new-game-button').on('click', onNewGame);
@@ -466,14 +463,12 @@ webpackJsonp([0],[
 	  var data = getFormFields(event.target);
 	  event.preventDefault();
 	  api.signUp(data).done(ui.success).fail(ui.failure);
-	  console.log('sign up');
 	};
 
 	var onSignIn = function onSignIn(event) {
 	  var data = getFormFields(event.target);
 	  event.preventDefault();
 	  api.signIn(data).done(ui.signInSuccess).fail(ui.failure);
-	  console.log('sign in');
 	};
 
 	var onChangePassword = function onChangePassword(event) {
