@@ -455,6 +455,8 @@ webpackJsonp([0],[
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
+	var app = __webpack_require__(4);
+
 	var getFormFields = __webpack_require__(10);
 	var api = __webpack_require__(5);
 	var ui = __webpack_require__(6);
@@ -478,6 +480,10 @@ webpackJsonp([0],[
 	};
 
 	var onSignOut = function onSignOut(event) {
+	  if (!app.user) {
+	    $('#winning-message').text('You have to be logged in to sign out');
+	    return;
+	  }
 	  event.preventDefault();
 	  api.signOut().done(ui.signOutSuccess).fail(ui.failure);
 	};
@@ -500,8 +506,15 @@ webpackJsonp([0],[
 	    $('#sign-up').hide();
 	  });
 	  $('#change-password-button').on('click', function () {
+	    if (!app.user) {
+	      $('#winning-message').text('You have to be logged in to change password');
+	      return;
+	    }
 	    $('#change-password').show();
 	  });
+	  // $('#change-password-button').on('click', function(){
+	  //   $('#change-password').show();
+	  // });
 	  $('#change-password').on('submit', function () {
 	    $('#change-password').hide();
 	  });
