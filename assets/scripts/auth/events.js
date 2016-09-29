@@ -1,4 +1,5 @@
 'use strict';
+const app = require('./app');
 
 const getFormFields = require('../../../lib/get-form-fields');
 const api = require('./api');
@@ -29,6 +30,10 @@ const onChangePassword = function (event) {
 };
 
 const onSignOut =(event) => {
+  if (!app.user) {
+    $('#winning-message').text('You have to be logged in to sign out');
+    return;
+  }
   event.preventDefault();
   api.signOut()
     .done(ui.signOutSuccess)
@@ -53,8 +58,15 @@ const addHandlers = () => {
     $('#sign-up').hide();
   });
   $('#change-password-button').on('click', function(){
+    if (!app.user) {
+      $('#winning-message').text('You have to be logged in to change password');
+      return;
+    }
     $('#change-password').show();
   });
+  // $('#change-password-button').on('click', function(){
+  //   $('#change-password').show();
+  // });
   $('#change-password').on('submit', function(){
     $('#change-password').hide();
   });
